@@ -1,21 +1,28 @@
 <div class="jumbotron" style="background-image: url(http://www.digitalmeetsculture.net/wp-content/uploads/2015/04/article.jpg); background-size: 100%; height:400px;">
    <div class="container for-about">
-   <h1 class="text-center">Mongo Scrapper</h1>
+   <h1 class="text-center" style="color:cornflowerblue">Mongo Scrapper</h1>
    <h1 class="text-center"></h1>
    
    </div>
 </div>
 
     {{#each articles}}
+    <br><br><br>
+    <div class="backcard">
+      <div>
+        <span>
+          <p  class="headercard">Headline : {{this.headline}}</p>
     
-    <div class="">
-      <div class="card-content white-text">
-        <span class="card-title orange-text">
-          <p>{{this.headline}}</[>
+    <button class="btn btn-primary float-right saved" style="float:right;" data-id="{{this._id}}">SAVE ARTICLE</button>
+
         </span>
-        <p>{{this.summury}}</p>
-        <p>{{this.url}}</p>
+        <p class="detailstext">Summary : {{this.summury}}</p>
+        <p class="detailstext"><a class="link" href="https://www.nytimes.com{{this.url}}" target="_blank" >Click Here To See More Details !!!</a></p>
       </div>
+    
       </div>
-    </div>
+    
     {{/each}}
+
+  <script src="./app.js"></script>
+

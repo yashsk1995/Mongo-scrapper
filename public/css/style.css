@@ -4,4 +4,31 @@
 body{
     background: #333;
     color:wheat;
+    text-align: center;
+}
+.backcard{
+    background-color: white;
+    border-radius: 20px;
+    box-shadow:cornflowerblue 5px 5px 5px 5px ;
+}
+
+.headercard{
+    font-size: 25px;
+    color: #333;
+    background: cornflowerblue;
+    border-radius: 20px;
+}
+.detailstext{
+font-size: 20px;
+color: darkslategrey;
+background: white;
+border-radius: 20px;
+
+}
+.link{
+    color: black;
+}
+.unsaved{
+    background: red;
+    color: white;
 }

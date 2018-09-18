@@ -53,8 +53,23 @@ app.get("/",function(req,res){
       res.json(err);
     });
 })
+
+
 app.get("/saved",function(req,res){
-  res.render("saved");
+
+db.Article.find({saved:true}) .then(function(dbArticle) {
+  // If we were able to successfully find Articles, send them back to the client
+  var hbObject = {
+    articles: dbArticle
+  }
+  console.log(hbObject);
+  res.render('saved', hbObject);
+}
+)
+.catch(function(err) {
+  // If an error occurred, send it to the client
+  res.json(err);
+});
 })
 // A GET route for scraping the echoJS website
 app.get("/scrape", function(req, res) {
@@ -93,10 +108,30 @@ app.get("/scrape", function(req, res) {
           return res.json(err);
         });
     });
-
     // If we were able to successfully scrape and save an Article, send a message to the client
-    res.send("Scrape Complete");
+    // res.send("Scrape Complete");
+    
+  
   });
+});
+
+app.put("/save/:id", function(req, res) {
+  db.Article.update({ _id: req.params.id }, { saved: true })
+      .then(function(dbArticle) {
+          res.json(dbArticle);
+      })
+      .catch(function(err) {
+          res.json(err);
+      });
+});
+app.put("/unsave/:id", function(req, res) {
+  db.Article.update({ _id: req.params.id }, { saved: false })
+      .then(function(dbArticle) {
+          res.json(dbArticle);
+      })
+      .catch(function(err) {
+          res.json(err);
+      });
 });
 
 
