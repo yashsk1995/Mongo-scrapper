@@ -12,9 +12,14 @@
       <div>
         <span>
           <p  class="headercard">Headline : {{this.headline}}</p>
-    
-    <button class="btn btn-primary float-right saved" style="float:right;" data-id="{{this._id}}">SAVE ARTICLE</button>
+        {{#if this.saved}}
 
+                    <button class="btn btn-primary float-right unsaved" style="float:right;margin:5px;" data-id="{{this._id}}">Remove From Saved</button>
+        {{else}}
+                    <button class="btn btn-primary float-right saved" style="float:right;" data-id="{{this._id}}">SAVE ARTICLE</button>
+
+        {{/if}}
+        
         </span>
         <p class="detailstext">Summary : {{this.summury}}</p>
         <p class="detailstext"><a class="link" href="https://www.nytimes.com{{this.url}}" target="_blank" >Click Here To See More Details !!!</a></p>

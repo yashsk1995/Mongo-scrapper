@@ -1,30 +1,69 @@
 <div class="jumbotron" style="background-image: url(http://www.digitalmeetsculture.net/wp-content/uploads/2015/04/article.jpg); background-size: 100%; height:400px;">
-   <div class="container for-about">
-   <h1 class="text-center" style="color:cornflowerblue">Saved Articles</h1>
-   <h1 class="text-center"></h1>
-   
-   </div>
+    <div class="container for-about">
+        <h1 class="text-center" style="color:cornflowerblue">Saved Articles</h1>
+        <h1 class="text-center"></h1>
+
+    </div>
 </div>
 
 
-  {{#each articles}}
-        <br><br><br>
+{{#each articles}}
+<br>
+<br>
+<br>
 
-    <div class="backcard">
-      <div>
+<div class="backcard">
+    <div>
         <span>
-          <p  class="headercard savedlist">Headline : {{this.headline}}</p>
-          <button class="btn btn-primary float-right note" style="float:right;margin:5px;" data-id="{{this._id}}">ARTICLE NOTE</button>
-    
-          <button class="btn btn-primary float-right unsaved" style="float:right;margin:5px;" data-id="{{this._id}}">Remove From Saved</button>
+            <p class="headercard savedlist">Headline : {{this.headline}}</p>
+            <button class="btn btn-primary float-right note" style="float:right;margin:5px;" data-id="{{this._id}}" data-toggle="modal"
+                data-target="#exampleModal{{this._id}}">ARTICLE NOTE</button>
 
+            <button class="btn btn-primary float-right unsaved" style="float:right;margin:5px;" data-id="{{this._id}}">Remove From Saved</button>
+            <div class="modal fade" id="exampleModal{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" style="color:gray" id="exampleModalLabel">Notes!!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{#if this.notes}}
+                             {{#each this.notes}}
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <p class="previousNotes" style="color:black"> {{this.body}}</p>
+                                    <button type="button" class="btn btn-danger deleteNote" data-note-id={{this._id}} data-article-id={{this.article}}>X</button>
+                                </div>
+                            </div>
+                            {{/each}} {{else}}
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <h4>No notes for this article yet.</h4>
+                                </div>
+                            </div>
+                            {{/if}}
+                            <label for="comment">Comment:</label>
+                            <textarea class="form-control" rows="5" id="comment{{this._id}}"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" style="color:black" data-dismiss="modal">Close</button>
+                            <button type="button" data-id="{{this._id}}" class="btn btn-primary savenote">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </span>
         <p class="detailstext">Summary : {{this.summury}}</p>
-        <p class="detailstext"><a class="link" href="https://www.nytimes.com{{this.url}}" target="_blank" >Click Here To See More Details !!!</a></p>
-      </div>
-    
-      </div>
+        <p class="detailstext">
+            <a class="link" href="https://www.nytimes.com{{this.url}}" target="_blank">Click Here To See More Details !!!</a>
+        </p>
     </div>
-    
-    {{/each}}
-  <script src="./saved.js"></script>
+
+</div>
+</div>
+
+{{/each}}
+<script src="./saved.js"></script>
