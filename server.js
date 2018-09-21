@@ -55,6 +55,22 @@ app.get("/", function (req, res) {
       res.json(err);
     });
 })
+app.delete("/dropdb",function(req,res){
+  db.Article.remove().then(function(err){
+    if(err){
+      console.log(err);
+
+    }
+    
+  });
+  db.Note.remove().then(function(err){
+    if(err){
+      console.log(err);
+
+    }
+    
+  });
+})
 
 
 app.get("/saved", function (req, res) {
